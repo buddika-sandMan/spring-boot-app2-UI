@@ -1,3 +1,30 @@
+let tableStudent = document.getElementById("tblStudent");
+
+let body=`<tr>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Contact</td>
+        </tr>`
+
+fetch("http://localhost:8080/student/all")
+    .then(res=>res.json())
+    .then(data=>{
+        
+        data.forEach(element => {
+            console.log(element)
+
+            body+=`<tr>
+                <td class="text-white">${element.name}</td>
+                <td class="text-white">${element.age}</td>
+                <td class="text-white">${element.contactnumber}</td>
+            </tr>`
+        })
+        tableStudent.innerHTML=body;    
+    });
+
+
+
+
 document.getElementById('btn-register').addEventListener("click", () => {
     let name = document.getElementById('txt-name').value;
     let age = document.getElementById('txt-age').value;
